@@ -1,4 +1,4 @@
-const { CityRepository }=require('../repository/index');
+const  { CityRepository } =require('../repository/index');
 
 class CityService{
     constructor()
@@ -8,6 +8,7 @@ class CityService{
     
     async createCity(data){
         try {
+            console.log("Create a cityfrom services");
             const city=await this.cityRepository.createCity(data);
             return city;
         } catch (error) {
@@ -36,7 +37,7 @@ class CityService{
         }
     }
 
-    async getCiCy(cityId){
+    async getCity(cityId){
         try {
             const city=await this.cityRepository.getCity(cityId);
             return city;
@@ -46,6 +47,18 @@ class CityService{
         }
     }
     
+    async getAllCities(filter)
+    {
+        try {
+            
+            const cities = await this.cityRepository.getAllCities({name:filter.name});
+            return cities;
+            
+        } catch (error) {
+            console.log("Something went wrong at the services layer");
+            throw {error};
+        }
+    }
 }
 
 module.exports=CityService;

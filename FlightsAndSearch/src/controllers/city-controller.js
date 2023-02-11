@@ -1,3 +1,4 @@
+
 const { CityService }=require('../services/index');
 
 const cityService=new CityService();
@@ -5,8 +6,10 @@ const cityService=new CityService();
 // ::method :-> post ::: data :-> req.body
  
 const create = async (req,res) => {
+
     try {
-        const city = await this.cityService.createCity(req.body);
+        console.log("City-controller called");
+        const city = await cityService.createCity(req.body);
         return res.status(201).json({
             data: city,
             success: true,
@@ -28,7 +31,7 @@ const create = async (req,res) => {
 
 const destroy = async (req,res) => {
     try {
-        const resposne = await this.cityService.deleteCity(req.params.id);
+        const resposne = await cityService.deleteCity(req.params.id);
          return res.status(200).json({
             data:resposne,
             success: true,
@@ -49,11 +52,11 @@ const destroy = async (req,res) => {
 // GET-> /city/:id
 const get = async (req,res) => {
     try {
-        const resposne = await this.cityService.getCity(req.params.id);
+        const resposne = await cityService.getCity(req.params.id);
          return res.status(200).json({
             data:resposne,
             success: true,
-            message: 'Sucessfully deleted',
+            message: 'Sucessfully got the city',
             err: {}
          })
     } catch (error) {
@@ -70,7 +73,7 @@ const get = async (req,res) => {
 // Patch -> /city/:id(which city to update) ::: data->req.body
 const update = async (req,res) => {
     try {
-        const resposne = await this.cityService.updateCity(req.params.id,req.body);
+        const resposne = await cityService.updateCity(req.params.id,req.body);
         return res.status(200).json({
            data:resposne,
            success: true,
@@ -88,9 +91,29 @@ const update = async (req,res) => {
     }
 }
 
+const getAll = async(req,res) => {
+    try {
+        const cities=await cityService.getAllCities(req.query);
+        return res.status(200).json({
+            data:cities,
+            success: true,
+            message: 'Sucessfully fetched all the cities',
+            err: {}
+         })
+    } catch (error) {
+        return res.status(500).json({
+            data:{},
+            success: false,
+            message: 'Not able to get all the cities',
+            err: error
+        })
+    }
+}
+
 module.exports={
     create,
     destroy,
     get,
-    update
+    update,
+    getAll
 }
