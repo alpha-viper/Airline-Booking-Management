@@ -17,9 +17,10 @@ const prepareAndStartServer=()=>{
         const service=new UserService();
         // const newToken=service.createToken({email:'sumit@admin.com',id:'1'});
         // console.log('new token is',newToken);
-        const token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InN1bWl0QGFkbWluLmNvbSIsImlkIjoiMSIsImlhdCI6MTY4MDA5MDkzNSwiZXhwIjoxNjgwMDk0NTM1fQ.QJUKay__D2DzNAyeOlPPsy_01WkuGapqd07uKHaW1gY';
-        const response=service.verifyToken(token);
-        console.log(response);
+        // const token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InN1bWl0QGFkbWluLmNvbSIsImlkIjoiMSIsImlhdCI6MTY4MDA5MDkzNSwiZXhwIjoxNjgwMDk0NTM1fQ.QJUKay__D2DzNAyeOlPPsy_01WkuGapqd07uKHaW1gY';
+        // const response=service.verifyToken(token);
+        // console.log(response);
+        console.log('Server started at port',5051);
     }) 
 }
 
